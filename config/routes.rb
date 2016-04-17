@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   root 'products#index'
-  get "/products", to: 'products#index'
-  get '/products/new', to: 'products#new'
+  get "/products", to: 'products#index' 
+  get '/products/new', to: 'products#new' 
   get "/products/:id", to: 'products#show'
-  post '/products/', to: 'products#create'
-
-
-
+  post '/products/', to: 'products#create' #this is only to display a message after our new page
+  get '/products/:id/edit', to: 'products#edit' #edit is not making adjustments to the name
+  patch 'products/:id', to: 'products#update' #syntax for html page
+  delete '/products/:id', to: 'products#destroy'
 
 
 

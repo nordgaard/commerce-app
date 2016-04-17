@@ -1,2 +1,10 @@
+<h1>Details on the Product Selected</h1>
+
 <p><%= @product.name %></p>
+<p><%= @product.price %></p>
+<p><%= @product.color %></p>
+<p><%= @product.make %></p>
 <p><%= @product.model %></p>
+
+<%= link_to "Destroy", "/products/#{@product.id}", method: :delete %>
+

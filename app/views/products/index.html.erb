@@ -1,5 +1,22 @@
+<table class="table">
+  <tr>
+    <th>Link</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Color</th>
+    <th>Make</th>
+    <th>Model</th>
 
-  <% @products.each do|product|%>
-  <p><%= product.name %></p>
-  <p><%= product.price %></p>  
+
+  </tr>
+  <% @products.each do |product| %>
+  <tr>
+    <td><%= link_to product.name, "/products/#{product.id}" %></td>
+    <td><%= product.name %></td>
+    <td><%= product.price %></td>
+    <td><%= product.color %></td>
+    <td><%= product.make %></td>
+    <td><%= product.model %></td>
+  </tr>
   <% end %>
+</table>
