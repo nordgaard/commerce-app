@@ -41,11 +41,13 @@ class ProductsController < ApplicationController
     @product.make = params[:make]
     @product.model = params[:model]
     @product.save
+    flash[:success] = "Product Updated"
     redirect_to "/products/#{@product.id}"
   end
 
   def destroy
     @product = Product.find_by(id: params[:id]).delete
+    flash[:warning] = "Product Deleted"
     redirect_to "/products"
 
   end
