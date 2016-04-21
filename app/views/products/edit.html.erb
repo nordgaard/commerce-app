@@ -23,6 +23,18 @@
      <%= label_tag :model %>
      <%= text_field_tag :model%>
    </div>
+   <div>
+     <%= label_tag :image_url %>
+     <%= text_field_tag :image_url, @product.image_url %>
+   </div>
+    <div>
+     <%= label_tag :description %>
+     <%= text_field_tag :description, @product.description %>
+   </div>
+   <div>
+     <%= label_tag :in_stock %>
+     <%= text_field_tag :in_stock, @product.in_stock %>
+   </div>
    <%= submit_tag "Update product" %>
  
  <% end %> 

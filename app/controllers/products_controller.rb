@@ -1,7 +1,14 @@
 class ProductsController < ApplicationController
 
   def index
+    sort_choice = params[:sort]
+    puts "Sort Choice?"
+    p sort_choice
+    if sort_choice
+      @products = Product.order(sort_choice)
+    else
     @products = Product.all
+    end
   end
 
   def show
@@ -12,7 +19,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    new_product = Product.new(name: params[:name], price: params[:price], color: params[:color], make: params[:make],model: params[:model])
+    new_product = Product.new(name: params[:name], price: params[:price], color: params[:color], make: params[:make],model: params[:model],image_url: params[:image_url], description: params[:description], in_stock: params[:in_stock])
     p new_product
     new_product.save
     redirect_to "/products/#{new_product.id}"
@@ -40,6 +47,9 @@ class ProductsController < ApplicationController
     @product.color = params[:color]
     @product.make = params[:make]
     @product.model = params[:model]
+    @product.image_url = params[:image_url]
+    @product.description = params[:description]
+    @product.in_stock = params[:in_stock]
     @product.save
     flash[:success] = "Product Updated"
     redirect_to "/products/#{@product.id}"

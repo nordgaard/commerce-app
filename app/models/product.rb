@@ -5,7 +5,7 @@
 
 class Product < ActiveRecord::Base
 
-  DISCOUNT_THRESHOLD = 2
+  DISCOUNT_THRESHOLD = 50
   SALES_TAX = 0.09
 
   def sale_message
@@ -21,7 +21,7 @@ class Product < ActiveRecord::Base
   end
 
   def total
-    price + tax.to_f #tax is CALLING A METHOD not an attribute!
+    "#{price + tax.to_f}" #tax is CALLING A METHOD not an attribute!
   end
 
 

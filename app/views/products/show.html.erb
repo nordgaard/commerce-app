@@ -1,13 +1,19 @@
 <h1>Details on the Product Selected</h1>
 
-<p><%= @product.name %></p>
-<p><%= @product.price %></p>
-<p><%= @product.tax %></p>
-<p><%= @product.total %></p>
+<p>Name: <%= @product.name %></p>
+<p>Price (+ Tax): <%= @product.total %></p>
 <p><%= @product.sale_message %></p>
-<p><%= @product.color %></p>
-<p><%= @product.make %></p>
-<p><%= @product.model %></p>
+<p>Color: <%= @product.color %></p>
+<p>Make: <%= @product.make %></p>
+<p>Model: <%= @product.model %></p>
+<p><img src="<%= @product.image_url %>"></p>
+<p>Bio: <%= @product.description %></p>
+<p>In Stock?: <%= @product.in_stock %></p>
+
+
+
 
 <%= link_to "Destroy", "/products/#{@product.id}", method: :delete %>
+<p> </p>
+<%= link_to "Update", "/products/#{@product.id}/edit", method: :get %>
 
