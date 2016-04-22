@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get '/products/:id/edit', to: 'products#edit' #edit is not making adjustments to the name
   patch 'products/:id', to: 'products#update' #syntax for html page
   delete '/products/:id', to: 'products#destroy'
+  get "/products/:id", to: 'products#show'
+  post "/search", to: 'products#search'
+
 
 
 

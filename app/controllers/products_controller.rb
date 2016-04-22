@@ -1,18 +1,24 @@
 class ProductsController < ApplicationController
 
-  def index
+  def index   #index is to show multiple products
     sort_choice = params[:sort]
     puts "Sort Choice?"
     p sort_choice
-    if sort_choice
+    if sort_choice == "price" || sort_choice == "price DESC" #sorting by price
       @products = Product.order(sort_choice)
+    elsif sort_choice == "discount"
+      @products = Product.where("price <?", 50)      
     else
-    @products = Product.all
+      @products = Product.all
     end
   end
 
-  def show
-    @product = Product.find_by(id: params[:id])
+  def show   #shoe is used to return just one, like random example
+    if params[:id] == "random"
+      @product = Product.all.sample
+    else
+      @product = Product.find_by(id: params[:id])
+    end
   end
 
   def new
@@ -27,7 +33,6 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find_by(id: params[:id])
-
   end
 
   def update
@@ -59,7 +64,11 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id]).delete
     flash[:warning] = "Product Deleted"
     redirect_to "/products"
-
   end
 
+def search
+  search_term = params[:user_search]
+  @products = Product.where("name LIKE ?", "%$={search_term}%")
+  render :index
+end
 end

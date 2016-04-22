@@ -1,7 +1,7 @@
 <h1>Details on the Product Selected</h1>
 
 <p>Name: <%= @product.name %></p>
-<p>Price (+ Tax): <%= @product.total %></p>
+<p>Price (+ Tax): <%= number_to_currency(@product.total) %></p>
 <p><%= @product.sale_message %></p>
 <p>Color: <%= @product.color %></p>
 <p>Make: <%= @product.make %></p>

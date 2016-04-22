@@ -1,8 +1,18 @@
 <h1>Cars, Cars, Cars!!</h1>
 
 <a href="/products?sort=price">Sort by Price</a>
-<a href="/products?sort=price DESC">Sort by Price</a>
+<a href="/products?sort=price DESC">Sort by Descending Price</a>
 <a href="/products?sort=name">Sort by Name</a>
+<a href="/products?sort=discount">Discount Items</a>
+<a href="/products/random">Random Items</a>
+
+<%= form_tag "/search", method: :post do %>
+<%= label_tag :user_search, "Search" %>
+<%= text_field_tag :user_search %>
+<%= submit_tag "Search" %>
+    <% end %>
+
+
 
 
 <div class="row">
