@@ -1,3 +1,4 @@
+
 <h1>Cars, Cars, Cars!!</h1>
 
 <a href="/products?sort=price">Sort by Price</a>
@@ -21,8 +22,7 @@
     <div class="thumbnail">
       <a href="/products/<%= product.id %>">
         <p><%= product.name %></p>
-        <p><%= product.price %></p>
-        <p><%= product.color %></p>
+        <p><%= number_to_currency(product.price)  %></p>
         <div>
           <img src="<%= product.image_url %>" width="200" height="200">
         </div>

@@ -1,4 +1,4 @@
-<h1>Details on the Product Selected</h1>
+<h1>Details of Your New Car!!</h1>
 
 <p>Name: <%= @product.name %></p>
 <p>Price (+ Tax): <%= number_to_currency(@product.total) %></p>
@@ -6,9 +6,10 @@
 <p>Color: <%= @product.color %></p>
 <p>Make: <%= @product.make %></p>
 <p>Model: <%= @product.model %></p>
-<p><img src="<%= @product.image_url %>"></p>
-<p>Bio: <%= @product.description %></p>
+<!-- <p>Supplier: <%#= #@#product.supplier.name %></p>
+ --><p>Bio: <%= @product.description %></p>
 <p>In Stock?: <%= @product.in_stock %></p>
+<p><img src="<%= @product.image_url %>"></p>
 
 
 

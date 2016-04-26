@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   delete '/products/:id', to: 'products#destroy'
   get "/products/:id", to: 'products#show'
   post "/search", to: 'products#search'
-
+  get "/suppliers", to: 'suppliers#index'
 
 
 

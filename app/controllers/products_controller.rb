@@ -66,9 +66,9 @@ class ProductsController < ApplicationController
     redirect_to "/products"
   end
 
-def search
-  search_term = params[:user_search]
-  @products = Product.where("name LIKE ?", "%$={search_term}%")
-  render :index
-end
+  def search
+    search_term = params[:user_search]
+    @products = Product.where("name LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
+   render :index
+  end
 end
