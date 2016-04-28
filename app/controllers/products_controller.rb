@@ -25,8 +25,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    new_product = Product.new(name: params[:name], price: params[:price], color: params[:color], make: params[:make],model: params[:model],image_url: params[:image_url], description: params[:description], in_stock: params[:in_stock])
-    p new_product
+    new_product = Product.new(name: params[:name], price: params[:price], color: params[:color], make: params[:make],model: params[:model], description: params[:description], in_stock: params[:in_stock], supplier_id: params[:supplier][:supplier_id], user_id: current_user)
     new_product.save
     redirect_to "/products/#{new_product.id}"
   end
@@ -52,7 +51,6 @@ class ProductsController < ApplicationController
     @product.color = params[:color]
     @product.make = params[:make]
     @product.model = params[:model]
-    @product.image_url = params[:image_url]
     @product.description = params[:description]
     @product.in_stock = params[:in_stock]
     @product.save

@@ -1,14 +1,16 @@
-Rails.application.routes.draw do
-  root 'products#index'
+ Rails.application.routes.draw do
+  devise_for :users
+  root 'products#index' 
   get "/products", to: 'products#index' 
   get '/products/new', to: 'products#new' 
   get "/products/:id", to: 'products#show'
-  post '/products/', to: 'products#create' #this is only to display a message after our new page
+  post '/products/', to: 'products#create'
   get '/products/:id/edit', to: 'products#edit' #edit is not making adjustments to the name
   patch 'products/:id', to: 'products#update' #syntax for html page
   delete '/products/:id', to: 'products#destroy'
   get "/products/:id", to: 'products#show'
   post "/search", to: 'products#search'
+
   get "/suppliers", to: 'suppliers#index'
 
 

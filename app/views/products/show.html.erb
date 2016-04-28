@@ -1,15 +1,17 @@
 <h1>Details of Your New Car!!</h1>
 
 <p>Name: <%= @product.name %></p>
+<p>Seller Email: <%= @product.name %></p>
 <p>Price (+ Tax): <%= number_to_currency(@product.total) %></p>
 <p><%= @product.sale_message %></p>
 <p>Color: <%= @product.color %></p>
 <p>Make: <%= @product.make %></p>
 <p>Model: <%= @product.model %></p>
-<!-- <p>Supplier: <%#= #@#product.supplier.name %></p>
- --><p>Bio: <%= @product.description %></p>
+<p>Bio: <%= @product.description %></p>
 <p>In Stock?: <%= @product.in_stock %></p>
-<p><img src="<%= @product.image_url %>"></p>
+<p><% @product.images.each do |image| %>
+<img src="<%= image.image_url %>" class="img-responsive">
+<% end %></p>
 
 
 
