@@ -20,7 +20,9 @@
     <%= label_tag :product_id %>
   <%= text_field_tag :product_id %>
 </div>
-
+<div>
+  <%= hidden_field_tag :product_id, @product.id %>
+</div>
 
 <%= link_to "Destroy", "/products/#{@product.id}", method: :delete %>
 <p> </p>

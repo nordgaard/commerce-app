@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'products#index'
+  root to: 'products#index'
   get "/products", to: 'products#index'
   get "/products/new", to: 'products#new'
   get "/products/:id", to: 'products#show'
@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get "/products/:id/edit", to: 'products#edit'
   patch "/products/:id", to: 'products#update'
   delete "/products/:id", to: 'products#destroy'
+  
   get "/suppliers", to: 'suppliers#index'
-
   post "/orders", to: 'orders#create'
   get "/orders/:id", to: 'orders#show'
 
