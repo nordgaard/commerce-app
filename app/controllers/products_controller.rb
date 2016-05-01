@@ -25,8 +25,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    new_product = Product.new(name: params[:name], price: params[:price], color: params[:color], make: params[:make],model: params[:model], description: params[:description], in_stock: params[:in_stock], supplier_id: params[:supplier][:supplier_id], user_id: current_user)
+    @new_product = Product.new(name: params[:name], price: params[:price], color: params[:color], make: params[:make],model: params[:model], description: params[:description], in_stock: params[:in_stock], supplier_id: params[:supplier][:supplier_id], user_id: current_user)
     new_product.save
+    flash[:warning] = "Product Created"
     redirect_to "/products/#{new_product.id}"
   end
 

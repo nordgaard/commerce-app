@@ -1,17 +1,17 @@
- Rails.application.routes.draw do
+Rails.application.routes.draw do
   devise_for :users
-  root 'products#index' 
-  get "/products", to: 'products#index' 
-  get '/products/new', to: 'products#new' 
+  root 'products#index'
+  get "/products", to: 'products#index'
+  get "/products/new", to: 'products#new'
   get "/products/:id", to: 'products#show'
-  post '/products/', to: 'products#create'
-  get '/products/:id/edit', to: 'products#edit' #edit is not making adjustments to the name
-  patch 'products/:id', to: 'products#update' #syntax for html page
-  delete '/products/:id', to: 'products#destroy'
-  get "/products/:id", to: 'products#show'
-  post "/search", to: 'products#search'
-
+  post "/products", to: 'products#create'
+  get "/products/:id/edit", to: 'products#edit'
+  patch "/products/:id", to: 'products#update'
+  delete "/products/:id", to: 'products#destroy'
   get "/suppliers", to: 'suppliers#index'
+
+  post "/orders", to: 'orders#create'
+  get "/orders/:id", to: 'orders#show'
 
 
 
