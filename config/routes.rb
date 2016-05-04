@@ -10,8 +10,17 @@ Rails.application.routes.draw do
   delete "/products/:id", to: 'products#destroy'
   
   get "/suppliers", to: 'suppliers#index'
+
+  get "/carted_products", to: 'carted_products#index'
+  post "/carted_products", to:'carted_products#create'
+  get "/carted_products/:id", to:'carted_products#show'
+  delete "/carted_products/:id", to: 'carted_products#destroy'
+
+  
   post "/orders", to: 'orders#create'
   get "/orders/:id", to: 'orders#show'
+  patch "/orders/:id", to: 'orders#update'
+
 
 
 

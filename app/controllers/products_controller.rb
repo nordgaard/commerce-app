@@ -6,6 +6,10 @@ class ProductsController < ApplicationController
     p sort_choice
     if sort_choice == "price" || sort_choice == "price DESC" #sorting by price
       @products = Product.order(sort_choice)
+    elsif params[:sort]
+      @products = Product.order(sort_choice)
+    elsif params[:category]
+      @products = Category.find_by(name: params[:category]).products  
     elsif sort_choice == "discount"
       @products = Product.where("price <?", 50)      
     else

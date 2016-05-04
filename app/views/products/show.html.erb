@@ -9,24 +9,19 @@
 <p>Bio: <%= @product.description %></p>
 <p>In Stock?: <%= @product.in_stock %></p>
 <p><% @product.images.each do |image| %>
-<img src="<%= image.image_url %>" class="img-responsive">
-<% end %></p>
+  <img src="<%= @product.images.image_url %>" class="img-responsive">
+  <% end %></p>
 
-<h1>Buy this Car!</h1>
-<%= form_tag '/orders', method: :post do %>
-<div>
-  <%= label_tag :quantity %>
-  <%= text_field_tag :quantity %>
-    <%= label_tag :product_id %>
-  <%= text_field_tag :product_id %>
-</div>
-<div>
+  <h1>Add this Car to Your Cart!</h1>
+  <%= form_tag "/carted_products", method: :post do %>
+  <div>
+    <%= label_tag :quantity %>
+    <%= text_field_tag :quantity %>
+  </div>
   <%= hidden_field_tag :product_id, @product.id %>
-</div>
+  <%= submit_tag "Add To Cart" %>
+  <% end %>
 
-<%= link_to "Destroy", "/products/#{@product.id}", method: :delete %>
-<p> </p>
-<%= link_to "Update", "/products/#{@product.id}/edit", method: :get %>
-<%= submit_tag "Buy" %>
-<% end %>
+  <%= link_to "Destroy", "/products/#{@product.id}", method: :delete %>
+  <%= link_to "Update", "/products/#{@product.id}/edit", method: :get %>
 

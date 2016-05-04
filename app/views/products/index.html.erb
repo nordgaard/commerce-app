@@ -13,6 +13,11 @@
 <%= submit_tag "Search" %>
     <% end %>
 
+<ul>
+  <% Category.all.each do |category| %>
+    <li><%= link_to category.name, "/products?category=#{category.name}" %></li>
+  <% end %>
+</ul>
 
 
 
