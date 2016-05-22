@@ -1,7 +1,4 @@
-#• Create a model method called sale_message that does as follows: If an item is under $2, it returns the string “Discount Item!” - otherwise, it should return the string “On Sale!” Then, have this message appear on the product’s show page. 
-#Create a model method called tax which will return the tax that would be charged for a particular product. (Assume a 9% tax rate.)
-#Create a model method called total which will return the sum of the price + tax.
-#Have the price, tax, and total appear on the product’s show page.
+
 
 class Product < ActiveRecord::Base
 
@@ -12,6 +9,11 @@ class Product < ActiveRecord::Base
   has_many :categorized_products
   has_many :categories, through: :categorized_products
   has_many :carted_products
+
+  validates :name, :price, presence: true
+  validates :price, numericality: {only_integer: true, greater_than: 0}
+  validates :name, uniqueness: true
+
 
   DISCOUNT_THRESHOLD = 50
   SALES_TAX = 0.09

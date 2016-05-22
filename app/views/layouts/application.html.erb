@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CommerceApp</title>
+  <title>FosApp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<% flash.each do |name, message|%>
+  <% flash.each do |name, message|%>
   <div class="alert alert-<%= name %> alert-dismissible fade in" role="alert">
-     <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</span><span class="sr-only">Close</span></button>
-     <%= message.html_safe %>  
-   </div><% end %>
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</span><span class="sr-only">Close</span></button>
+   <%= message.html_safe %>  
+ </div><% end %>
 
-<nav class="navbar navbar-inverse">
+ <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -35,44 +35,54 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <% if current_user %>
-        <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>
-        <% else %>
-          <li><%= link_to "Sign Up", "/users/sign_up" %></li>
-          <li><%= link_to "Sign In", "/users/sign_in" %></li>
-        <% end %>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+           <% if current_user && current_user.admin %>
+           <li><%= link_to "Add Car", "/products/new" %></li>
+           <% end %>
+           <% if current_user %>
+           <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>
+           <li><%= link_to "Items #{@cart_count}", "/carted_products" %></li>
+           <% else %>  
+           <li><%= link_to "Sign In", "/users/sign_in"%></li>
+           <li><%= link_to "Sign Up", "/users/sign_up"%></li>
+           <% end %>
+           <li><a href="#">Action</a></li>
+           <li><a href="#">Another action</a></li>
+           <li><a href="#">Something else here</a></li>
+           <li role="separator" class="divider"></li>
+           <li><a href="#">Separated link</a></li>
+           <li role="separator" class="divider"></li>
+           <li><a href="#">One more separated link</a></li>
+         </ul>
+       </li>
+     </ul>
+     <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <% if current_user && current_user.admin %>
+      <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>
+      <% else %>
+      <li><%= link_to "Sign Up", "/users/sign_up" %></li>
+      <li><%= link_to "Sign In", "/users/sign_in" %></li>
+      <% end %>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
 </nav>
-   <%= yield %>
+<%= yield %>
 </div>
 
 </body>

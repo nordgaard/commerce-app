@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
     end
     total = total_tax + total_subtotal
     order.update(completed: true, tax: total_tax, subtotal: total_subtotal, total: total)
+    session[:cart_count] = nil
     redirect_to "/orders/#{order.id}"
   end
 

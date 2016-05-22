@@ -1,40 +1,45 @@
 
 <h1>Add a new Product!</h1>
 
+<% if @product && @product.errors.any? %>
+<ul>
+  <% @product.errors.full_messages.each do |message| %>
+  <li ><%= message %></li>
+  <% end %>
+</ul>
+
+<% end %>
 <%= form_tag '/products', method: :post do %>
 
-  <div>
-    <%= label_tag :name %>
-    <%= text_field_tag :name %>
-  </div>
-  <div>
-    <%= label_tag :price %>
-    <%= text_field_tag :price %>
-  </div>
-  <div>
-    <%= label_tag :color %>
-    <%= text_field_tag :color %>
-  </div>
-  <div>
-    <%= label_tag :model %>
-    <%= text_field_tag :model %>
-  </div>
-  <div>
-    <%= label_tag :make %>
-    <%= text_field_tag :make %>
-  </div>
-    <div>
-     <%= label_tag :description %>
-     <%= text_field_tag :description%>
-   </div>
-  <div>
-  <%= collection_select :supplier, :supplier_is, Supplier.all, :id, :name % %>
-  </div>
+<div>
+  <%= label_tag :name %>
+  <%= text_field_tag :name, @product.name%>
+</div>
+<div>
+  <%= label_tag :price %>
+  <%= text_field_tag :price, @product.price %>
+</div>
+<div>
+  <%= label_tag :color %>
+  <%= text_field_tag :color, @product.color %>
+</div>
+<div>
+  <%= label_tag :model %>
+  <%= text_field_tag :model, @product.model %>
+</div>
+<div>
+  <%= label_tag :make %>
+  <%= text_field_tag :make, @product.make %>
+</div>
+<div>
+ <%= label_tag :description %>
+ <%= text_field_tag :description, @product.description%>
+</div>
 
-   <div>
-     <%= label_tag :in_stock %>
-     <%= text_field_tag :in_stock%>
-   </div>
-  <%= submit_tag "Add Product" %>
+<div>
+ <%= label_tag :in_stock %>
+ <%= text_field_tag :in_stock, @product.in_stock%>
+</div>
+<%= submit_tag "Add Product" %>
 
 <% end %>

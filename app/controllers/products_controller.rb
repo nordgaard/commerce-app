@@ -1,20 +1,19 @@
 class ProductsController < ApplicationController
+before_action :authenticate_user!, except: [:index]
 
-  def index   #index is to show multiple products
-    sort_choice = params[:sort]
-    puts "Sort Choice?"
-    p sort_choice
-    if sort_choice == "price" || sort_choice == "price DESC" #sorting by price
-      @products = Product.order(sort_choice)
-    elsif params[:sort]
-      @products = Product.order(sort_choice)
+
+  def index
+
+    if params[:sort]
+      @products = Product.order(params[:sort] => params[:sort_order])
+    elsif params[:discount]
+      @products = Product.where("price < ?", 100)
     elsif params[:category]
-      @products = Category.find_by(name: params[:category]).products  
-    elsif sort_choice == "discount"
-      @products = Product.where("price <?", 50)      
+         @products = Category.find_by(name: params[:category]).products
     else
       @products = Product.all
     end
+    # render :new
   end
 
   def show   #shoe is used to return just one, like random example
@@ -26,14 +25,22 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @product = Product.new 
+    unless current_user && current_user.admin
+      redirect_to "/products"
+    end
   end
 
   def create
-    @new_product = Product.new(name: params[:name], price: params[:price], color: params[:color], make: params[:make],model: params[:model], description: params[:description], in_stock: params[:in_stock], supplier_id: params[:supplier][:supplier_id], user_id: current_user)
-    new_product.save
-    flash[:warning] = "Product Created"
-    redirect_to "/products/#{new_product.id}"
+    @product = ProductsControllerroduct.new(name: params[:name], price: params[:price], description: params[:description], make: params[:make], model: params[:model], image_url: params[:image_url],user_id: current_user.id)
+    if @product.save #happy path :)
+      flash[:success] = "product Created!"
+      redirect_to "/products/#{@product.id}"
+    else #sad path :(
+      render :new
+    end
   end
+
 
   def edit
     @product = Product.find_by(id: params[:id])
@@ -63,11 +70,7 @@ class ProductsController < ApplicationController
     redirect_to "/products/#{@product.id}"
   end
 
-  def destroy
-    @product = Product.find_by(id: params[:id]).delete
-    flash[:warning] = "Product Deleted"
-    redirect_to "/products"
-  end
+ 
 
   def search
     search_term = params[:user_search]
