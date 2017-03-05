@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20160505005130) do
     t.integer  "product_id"
     t.integer  "order_id"
     t.integer  "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "categories", force: :cascade do |t|
